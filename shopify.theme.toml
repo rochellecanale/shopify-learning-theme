@@ -1,0 +1,2 @@
+[environments.development]
+store = "https://nw-fedev.myshopify.com/"
