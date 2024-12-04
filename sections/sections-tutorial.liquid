@@ -1,0 +1,245 @@
+<p>hello world</p>
+<h2>Text Setting</h2>
+<p>{{ section.settings.text_setting }}</p>
+
+<h2>Textarea setting</h2>
+<p>{{ section.settings.textarea_setting | newline_to_br }}</p>
+
+<h2>Richtext setting</h2>
+<div>{{ section.settings.richtext_setting }}</div>
+
+<h2>Inline richtext setting</h2>
+<div>{{ section.settings.inline_richtextsetting }}</div>
+
+<h2>Number setting</h2>
+<div>{{ section.settings.number_setting }}</div>
+
+<h2>Range setting</h2>
+<div>{{ section.settings.range_setting }}</div>
+
+<h2>Select setting</h2>
+<div>{{ section.settings.select_setting }}</div>
+
+<h2>Checkbox setting</h2>
+{% if section.settings.checkbox_setting == true %}
+	<p>Checkbox is true</p>
+{% else %}
+	<p>Checkbox is false</p>
+{% endif %}
+
+<h2>Radio setting</h2>
+<div>{{ section.settings.radio_setting }}</div>
+
+<h2>Color setting</h2>
+<p style="color: {{ section.settings.color_setting }}">{{ section.settings.color_setting }}</p>
+
+<div style="background: {{ section.settings.color_background_setting }}">
+	<h2>Color Background setting</h2>
+	<p>{{ section.settings.color_background_setting }}</p>
+</div>
+
+{% if section.settings.image_picker_setting %}
+	<h2>Image Picker setting</h2>
+	{{  section.settings.image_picker_setting | image_url: width: 400 | image_tag: style: 'object-fit: cover; width: 300px' }}
+{% endif %}
+
+{% if section.settings.video_setting %}
+	<h2>Video setting</h2>
+	{{  section.settings.video_setting | video_tag: controls: true, style: "height: 500px; width: 500px", image_size: '500x' }}
+{% endif %}
+
+<div>
+	<h2>Video URL setting</h2>
+	<iframe 
+		width="560" 
+		height="315" 
+		src="https://www.youtube.com/embed/{{ section.settings.video_url_setting.id }}" 
+		title="YouTube video player" 
+		frameborder="0" 
+		allow="accelerometer; autoplay; clipboard-write; encrypted-media; gyroscope; picture-in-picture; web-share" 
+		referrerpolicy="strict-origin-when-cross-origin" allowfullscreen>
+	</iframe>
+</div>
+
+<h2>URL setting</h2>
+<a href="{{ section.settings.url_setting }}">Click here</a>
+
+<h2>HTML setting</h2>
+<div>
+	{{  section.settings.html_setting }}
+</div>
+
+<h2>Liquid setting</h2>
+<div>
+	{{  section.settings.liquid_setting }}
+</div>
+
+<h2>Product setting</h2>
+<div>
+	{{  section.settings.product_setting }} | {{ section.settings.product_setting.title }}
+</div>
+
+<h2>Product List setting</h2>
+{% for product in section.settings.product_list_setting %}
+	<div>
+		{{  product }} | {{ product.title }}
+		{{ product.variants[0].price | money }}
+	</div>
+{% endfor %}
+
+{% schema %}
+	{
+		"name": "Sections Tutorial",
+		"tag": "section",
+		"class": "section-tutorial",
+		"limit": 2,
+		"settings": [
+			{
+				"type": "text",
+				"id": "text_setting",
+				"label": "Text Setting",
+				"default": "This is my first setting",
+				"info": "This is a some helper text",
+				"placeholder": "This is a placeholder"
+			},
+			{
+				"type": "textarea",
+				"id": "textarea_setting",
+				"label": "Textarea Setting",
+				"placeholder": "This is a placeholder"
+			},
+			{
+				"type": "richtext",
+				"id": "richtext_setting",
+				"label": "Richtext Setting"
+			},
+			{
+				"type": "inline_richtext",
+				"id": "inline_richtextsetting",
+				"label": "Inline RichText Setting"
+			},
+			{
+				"type": "number",
+				"id": "number_setting",
+				"label": "Number Setting",
+			},
+			{
+				"type": "range",
+				"id": "range_setting",
+				"label": "Range Setting",
+				"min": 50,
+				"max": 150,
+				"step": 5,
+				"unit": "px",
+				"default": 50
+			},
+			{
+				"type": "select",
+				"id": "select_setting",
+				"label": "Select setting",
+				"options": [
+					{
+						"value": "value-1",
+						"label": "Value 1",
+					},
+					{
+						"value": "value-2",
+						"label": "Value 2",
+					},
+					{
+						"value": "value-3",
+						"label": "Value 3",
+					},
+					{
+						"value": "value-4",
+						"label": "Value 4",
+					}
+				]
+			},
+			{
+				"type": "checkbox",
+				"label": "Checkbox Setting",
+				"id": "checkbox_setting",
+				"default": true
+			},
+			{
+				"type": "radio",
+				"label": "Radio button setting",
+				"id": "radio_setting",
+				"options": [
+					{
+						"value": "value-1",
+						"label": "Value 1"
+					},
+					{
+						"value": "value-2",
+						"label": "Value 2"
+					},
+					{
+						"value": "value-3",
+						"label": "Value 3"
+					}
+				]
+			},
+			{
+				"type": "color",
+				"label": "Color Setting",
+				"id": "color_setting"
+			},
+			{
+				"type": "color_background",
+				"label": "Color Background Setting",
+				"id": "color_background_setting"
+			},
+			{
+				"type": "image_picker",
+				"label": "Image Picker Setting",
+				"id": "image_picker_setting"
+			},
+			{
+				"type": "video",
+				"label": "Video Setting",
+				"id": "video_setting"
+			},
+			{
+				"type": "video_url",
+				"label": "Video URL Setting",
+				"id": "video_url_setting",
+				"accept": ["youtube", "vimeo"],
+				"placeholder": "Youtube URL"
+			},
+			{
+				"type": "url",
+				"label": "URL Setting",
+				"id": "url_setting"
+			},
+			{
+				"type": "html",
+				"label": "HTML Setting",
+				"id": "html_setting"
+			},
+			{
+				"type": "liquid",
+				"label": "Liquid Setting",
+				"id": "liquid_setting"
+			},
+			{
+				"type": "product",
+				"label": "Product Setting",
+				"id": "product_setting"
+			},
+			{
+				"type": "product_list",
+				"label": "Product List Setting",
+				"id": "product_list_setting"
+			}
+		],
+		"blocks": [],
+		"presets": [
+			{
+				"name": "Sections Tutorial",
+				"settings": {}
+			}
+		]
+	}
+{% endschema %}
