@@ -1,0 +1,11 @@
+.section-tutorial {
+	background-color: beige;
+}
+
+.section-tutorial__internal h2 {
+	color: var(--primary-color);
+}
+
+.section-tutorial__internal .button {
+	background: var(--primary-color);
+}

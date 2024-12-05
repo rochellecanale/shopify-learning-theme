@@ -1,3 +1,30 @@
+{% if product.metafields.custom.example_metafield  %}
+	<h2>Example Metafield</h2>
+	<p>{{ product.metafields.custom.example_metafield }}</p>
+{% endif %}
+
+{% if product.metafields.custom.related_products  %}
+	<h2>Related Product</h2>
+
+	{% for item in product.metafields.custom.related_products.value %}
+		<p>{{ item.title }}</p>
+		<p>{{ item.price | money }}</p>
+	{% endfor %}
+
+{% endif %}
+
+<h2>File Metafield</h2>
+<a download target="_blank" href="{{ product.metafields.custom.product_guide.value.url }}">Download Now</a>
+
+<h2>Image Metafield</h2>
+{{ product.metafields.custom.image_metafield | image_url: width: 300, height: 300 | image_tag }}
+
+<h2>Date Metafield</h2>
+<p>{{ product.metafields.custom.date_metafield.value | date: '%B %d, %Y' }}</p>
+
+<h2>Richtext Metafield</h2>
+<div>{{ product.metafields.custom.richtext_metafield | metafield_tag }}</div>
+
 <product-info
   id="MainProduct-{{ section.id }}"
   class="section-{{ section.id }}-padding gradient color-{{ section.settings.color_scheme }}"
