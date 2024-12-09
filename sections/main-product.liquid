@@ -1,4 +1,5 @@
-{% if product.metafields.custom.example_metafield  %}
+{% comment %} 
+ {% if product.metafields.custom.example_metafield  %}
 	<h2>Example Metafield</h2>
 	<p>{{ product.metafields.custom.example_metafield }}</p>
 {% endif %}
@@ -23,7 +24,8 @@
 <p>{{ product.metafields.custom.date_metafield.value | date: '%B %d, %Y' }}</p>
 
 <h2>Richtext Metafield</h2>
-<div>{{ product.metafields.custom.richtext_metafield | metafield_tag }}</div>
+<div>{{ product.metafields.custom.richtext_metafield | metafield_tag }}</div> 
+{% endcomment %}
 
 <product-info
   id="MainProduct-{{ section.id }}"
@@ -749,6 +751,9 @@
       {{ product | structured_data }}
     </script>
   </div>
+
+  {% render 'product-craftsperson', { product: product} %}
+
 </product-info>
 
 {% schema %}
