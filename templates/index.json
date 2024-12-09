@@ -48,6 +48,12 @@
         "show_text_below": false
       }
     },
+    "all_products_ckr6mj": {
+      "type": "all-products",
+      "settings": {
+        "products_per_row": 4
+      }
+    },
     "featured_collection": {
       "type": "featured-collection",
       "settings": {
@@ -116,6 +122,7 @@
   },
   "order": [
     "image_banner",
+    "all_products_ckr6mj",
     "featured_collection",
     "promotions_group_VXymyG"
   ]
